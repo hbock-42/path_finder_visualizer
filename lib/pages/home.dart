@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Board board;
   bool canPlaceWalls = true;
+  List<bool> selectedButton = List<bool>.filled(3, false);
 
   @override
   void initState() {
@@ -27,11 +28,36 @@ class _HomeState extends State<Home> {
         children: [
           Row(
             children: [
-              CupertinoSwitch(
-                onChanged: (bool value) =>
-                    setState(() => canPlaceWalls = value),
-                value: canPlaceWalls,
-              ),
+              ToggleButtons(
+                splashColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                color: Colors.black,
+                selectedColor: Colors.blue,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('place walls'),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('move start'),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('move end'),
+                  ),
+                ],
+                isSelected: selectedButton,
+                onPressed: (index) {
+                  setState(() {
+                    for (var i = 0; i < selectedButton.length; i++) {
+                      selectedButton[i] = false;
+                    }
+                    selectedButton[index] = true;
+                    print(selectedButton);
+                  });
+                },
+              )
             ],
           ),
           BoardWidget(
