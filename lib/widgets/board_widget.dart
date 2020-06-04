@@ -7,11 +7,15 @@ import 'package:path_finder_visualizer/models/board_tile.dart';
 class BoardWidget extends StatefulWidget {
   final Board board;
   final bool canPlaceWalls;
+  final bool canPlaceStart;
+  final bool canPlaceEnd;
 
   const BoardWidget({
     Key key,
     @required this.board,
     @required this.canPlaceWalls,
+    @required this.canPlaceStart,
+    @required this.canPlaceEnd,
   }) : super(key: key);
 
   @override

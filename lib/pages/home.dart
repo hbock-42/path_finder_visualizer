@@ -10,7 +10,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Board board;
-  bool canPlaceWalls = true;
+  bool get canPlaceWalls => selectedButton[0];
+  bool get canPlaceStart => selectedButton[1];
+  bool get canPlaceEnd => selectedButton[2];
   List<bool> selectedButton = List<bool>.filled(3, false);
 
   @override
@@ -27,6 +29,7 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ToggleButtons(
                 splashColor: Colors.transparent,
@@ -63,6 +66,8 @@ class _HomeState extends State<Home> {
           BoardWidget(
             board: board,
             canPlaceWalls: canPlaceWalls,
+            canPlaceStart: canPlaceStart,
+            canPlaceEnd: canPlaceEnd,
           ),
         ],
       ),
